@@ -42,6 +42,11 @@ public class ArtObject {
 		this.title = title;
 	}
 
+	public ArtObject(int int1) {
+		// TODO Auto-generated constructor stub
+		this.id=int1;
+	}
+
 	public int getId() {
 		return id;
 	}

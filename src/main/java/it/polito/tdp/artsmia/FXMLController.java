@@ -5,6 +5,7 @@
 package it.polito.tdp.artsmia;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import it.polito.tdp.artsmia.model.Model;
@@ -47,6 +48,12 @@ public class FXMLController {
     
     @FXML
     void doAnalizzaOggetti(ActionEvent event) {
+    	
+    	model.creaGrafo();
+    	if (this.model.isGrafoCreato())
+    		txtResult.setText("Grafo correttamente creato!");
+    	else 
+    		txtResult.setText("Errore nella costruzione del grafo!");
 
     }
 
@@ -57,7 +64,26 @@ public class FXMLController {
 
     @FXML
     void doCercaOggetti(ActionEvent event) {
-
+    	
+    	txtResult.clear();
+    	txtObjectId.clear();
+    	
+    	String idOggetto=txtObjectId.getText().toString();
+    	
+    	try {
+    		
+    		if(model.isOggettoNelGrafo(Integer.parseInt(idOggetto))==true) {
+        		txtResult.setText("Oggetto id inserito esiste!");
+        	}
+        	else {
+        		txtResult.setText("Oggetto id inserito non esiste!");
+        	}
+    		
+    	}
+    	catch (NumberFormatException e) {
+    		txtResult.setText("Devi inserire un ID!");
+    		
+    	}
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
